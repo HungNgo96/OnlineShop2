@@ -22,9 +22,9 @@ namespace OnlineShop2.Areas.Admin.Controllers
             {
 
                 var dao = new UserDao();
-                var result = dao.Login(model.UserName, model.Password);
+                var result = dao.Login(model.UserName,Encryptor.MD5Hash(model.Password) );
 
-                if (result)
+                if (result == 1)
                 {
                     var user = dao.GetById(model.UserName);
                     var userSession = new UserLogin();
@@ -34,12 +34,22 @@ namespace OnlineShop2.Areas.Admin.Controllers
 
                     return RedirectToAction("Index", "Home");
                 }
+                else if(result == 0)
+                {
+                    ModelState.AddModelError("", "Account not exists!");
+                }else if (result == -1)
+                {
+                    ModelState.AddModelError("", "Account is blocked!");
+                }else if (result == -2)
+                {
+                    ModelState.AddModelError("", "Password is incorrect!");
+                }
                 else
                 {
-                    ModelState.AddModelError("", "Đăng nhập không đúng");
+                    ModelState.AddModelError("", "Login fail!");
                 }
             }
-           
+
             return View("Index");
         }
     }
