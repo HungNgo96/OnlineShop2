@@ -31,8 +31,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,11 +50,29 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="EF\About.cs" />
+    <Compile Include="EF\Category.cs" />
+    <Compile Include="EF\Contact.cs" />
+    <Compile Include="EF\Content.cs" />
+    <Compile Include="EF\ContentTag.cs" />
+    <Compile Include="EF\Feedback.cs" />
+    <Compile Include="EF\Footer.cs" />
+    <Compile Include="EF\Menu.cs" />
+    <Compile Include="EF\MenuType.cs" />
+    <Compile Include="EF\OnlienShopDbContext.cs" />
+    <Compile Include="EF\Product.cs" />
+    <Compile Include="EF\ProductCategory.cs" />
+    <Compile Include="EF\Slide.cs" />
+    <Compile Include="EF\Tag.cs" />
+    <Compile Include="EF\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Dao\" />
-    <Folder Include="EF\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
