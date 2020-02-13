@@ -7,7 +7,7 @@ using Model.EF;
 
 namespace Model.Dao
 {
-    class UserDao
+    public class UserDao
     {
         OnlienShopDbContext db = null;
         public UserDao()
@@ -20,8 +20,13 @@ namespace Model.Dao
             db.SaveChanges();
             return entity.ID;
         }
+        public User GetById(string userName)
+        {
+            return db.Users.SingleOrDefault(x => x.UserName == userName);
+        }
         public bool Login(string userName,string passWord)
         {
+
             var result = db.Users.Count(x => x.UserName == userName && x.Password == passWord);
             if(result > 0)
             {
