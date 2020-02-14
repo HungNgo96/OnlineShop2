@@ -27,7 +27,7 @@
                                 <div class="card-body">
                                     @using (Html.BeginForm("Login", "Login", FormMethod.Post))
                                     {
-                                        @Html.ValidationSummary(false, "", "error")
+                                        @Html.ValidationSummary(false, "", new {@class="text-danger" })
                                         <div class="form-group">
                                             <label class="small mb-1" for="inputEmailAddress">Email</label>
                                             @Html.TextBoxFor(model => model.UserName, new { @class = "form-control py-4", @autofoucs = "autofocus", @placeholder = "Enter email address" })
