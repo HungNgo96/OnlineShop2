@@ -14,6 +14,7 @@ namespace OnlineShop2.Areas.Admin.Models
         [Required(ErrorMessage = "Mời nhập password")]
         public String Password { set; get; }
         public bool Remember { set; get; }
+        
 
     }
 }

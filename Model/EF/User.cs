@@ -9,6 +9,7 @@ namespace Model.EF
     [Table("User")]
     public partial class User
     {
+       
         public long ID { get; set; }
 
         [StringLength(50)]
@@ -39,6 +40,12 @@ namespace Model.EF
         [StringLength(50)]
         public string ModifiledBy { get; set; }
 
-        public bool? Status { get; set; }
+        public bool Status { get; set; }
+
+        //[NotMapped]
+        //[Required(ErrorMessage = "Confirmation Password is required.")]
+        //[Compare("Password", ErrorMessage = "Password and Confirmation Password must match.")]
+        //public string ConfirmPassword { get; set; }
+
     }
 }
