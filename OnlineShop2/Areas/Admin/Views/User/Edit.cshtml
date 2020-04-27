@@ -1,0 +1,109 @@
+﻿@model Model.EF.User
+
+@{
+    ViewBag.Title = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
+}
+@section header {Edit User}
+@section breadcrumb { From / Edit}
+
+<div class="card mb-4">
+    <div class="card-header"><i class="fas fa-users mr-1"></i>Edit User</div>
+    <div class="card-body">
+        <div class="card-body">
+            @using (Html.BeginForm("Edit", "User", FormMethod.Post))
+            {
+                @Html.AntiForgeryToken()
+                <div class="form-row">
+                    <div class="col-md-6">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputName">Name</label>
+                            @Html.TextBoxFor(model => model.Name, htmlAttributes: new { @class = "form-control py-4", @placeholder = "Enter Name" })
+                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                            @*<input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputEmail">Email</label>
+                            @Html.TextBoxFor(model => model.Email, htmlAttributes: new { @class = "form-control py-4", @placeholder = "Enter Email" })
+                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                            @*<input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />*@
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputAddress">Address</label>
+                            @Html.TextBoxFor(model => model.Address, htmlAttributes: new { @class = "form-control py-4", @placeholder = "Enter Address" })
+                            @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+                            @*<input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputPhone">Phone</label>
+                            @Html.TextBoxFor(model => model.Phone, htmlAttributes: new { @class = "form-control py-4", @placeholder = "Enter Phone" })
+                            @Html.ValidationMessageFor(model => model.Phone, "", new { @class = "text-danger" })
+                            @*<input class="form-control py-4" id="inputLastName" type="text" placeholder="Enter last name" />*@
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputUser Name">User Name</label>
+                            @Html.TextBoxFor(model => model.UserName, htmlAttributes: new { @class = "form-control py-4", @placeholder = "Enter User Name" })
+                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                            @* <input class="form-control py-4" id="inputFirstName" type="text" placeholder="Enter first name" />*@
+                        </div>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <label class="small mb-1" for="inputPassword">Password</label>
+                            @Html.PasswordFor(model => model.Password, htmlAttributes: new { @class = "form-control py-4", @type = "password" })
+                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            @* <input class="form-control py-4" id="inputPassword" type="password" placeholder="Enter password" />*@
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            @*<label class="small mb-1" for="inputconfirmpassword">confirm password</label>*@
+                            @*@Html.PasswordFor(model => model.ConfirmPassword, htmlAttributes: new { @class = "form-control py-4", @type = "password" })*@
+                            @* @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })*@
+                            @* <input class="form-control py-4" id="inputconfirmpassword" type="password" placeholder="confirm password" />*@
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="form-check">
+                        @* <input class="form-check-input" type="checkbox" id="gridCheck">*@
+                        @Html.CheckBoxFor(model => model.Status, new { @class = "form-check-input" })
+                        <label class="form-check-label" for="gridCheck">
+                            Status
+                        </label>
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group mt-4 mb-0">
+                        <button type="submit" class="btn btn-primary btn-block">Update Account</button>
+                    </div>
+                </div>
+
+            }
+        </div>
+    </div>
+</div>
+
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>

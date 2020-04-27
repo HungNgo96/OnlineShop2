@@ -8,7 +8,7 @@ namespace Model.EF
     public partial class OnlienShopDbContext : DbContext
     {
         public OnlienShopDbContext()
-            : base("name=OnlienShopDbContext")
+            : base("name=OnlienShopDbContext")//name in webconfig
         {
         }
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Model.EF;
-
+using PagedList;
 namespace Model.Dao
 {
     public class UserDao
@@ -20,9 +20,41 @@ namespace Model.Dao
             db.SaveChanges();
             return entity.ID;
         }
+        public Boolean Update(User entity)
+        {
+            try
+            {
+                var user = db.Users.Find(entity.ID);
+                user.Name = entity.Name;
+                if (!String.IsNullOrEmpty(entity.Password))
+                {
+                    user.Password = entity.Password;
+                }
+                user.Address = entity.Address;
+                user.Email = entity.Email;
+                user.Status = entity.Status;
+                user.ModifiledBy = entity.ModifiledBy;
+                user.ModifiledDate = DateTime.Now;
+                db.SaveChanges();
+                return true;
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+           
+        }
+        public IEnumerable<User> ListAllPaging(int page, int pageSize)
+        {
+            return db.Users.OrderByDescending(x=>x.CreatedDate).ToPagedList(page, pageSize);
+        }
         public User GetById(string userName)
         {
             return db.Users.SingleOrDefault(x => x.UserName == userName);
+        }
+        public User GetViewDetail(int id)
+        {
+            return db.Users.Find(id);
         }
         public int Login(string userName, string passWord)
         {
@@ -51,10 +83,22 @@ namespace Model.Dao
                 }
             }
 
+        }
+        public bool Delete(int id)
+        {
+            try
+            {
+                var user = db.Users.Find(id);
+                db.Users.Remove(user);
+                db.SaveChanges();
+                return true;
 
-
-
-
+            }
+            catch(Exception e)
+            {
+                return false;
+            }
+            
 
 
         }

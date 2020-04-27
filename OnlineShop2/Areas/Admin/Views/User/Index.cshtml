@@ -1,4 +1,6 @@
-﻿@model Model.EF.User
+﻿
+@model PagedList.IPagedList<Model.EF.User>
+@using PagedList.Mvc;
 
 @{
     ViewBag.Title = "List User";
@@ -7,7 +9,58 @@
 @section header {List User}
 @section breadcrumb { From / List User}
 
+<div class="card mb-4">
+    <div class="card-header"><i class="fas fa-table mr-1"></i>DataTable Example</div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table" width="100%" cellspacing="0">
+                <thead>
+                    <tr>
+                        <th>Action</th>
+                        <th>User Name</th>
+                        <th>Name</th>
+                        <th>Email</th>
 
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr id="row_@item.ID">
+                            <td>
+                                <button type="button" class="btn btn-primary">
+                                    <a href="/Admin/User/Edit/@item.ID" class="text-warning">Edit</a>
+                                
+                                </button>
+                                <button type="button" class="btn btn-primary">
+                                    @Ajax.ActionLink("Delete","Delete",new {@id = item.ID }, new AjaxOptions
+                               {
+                                   Confirm="Are u sure delete a row record ?",
+                                   OnComplete="$(#row_"+ item.ID +").remove()",
+                                   HttpMethod="Delete"
+                               })
+                                </button>
+                                
+                            </td>
+                            <td>@item.UserName</td>
+                            <td>@item.Name</td>
+                            <td>@item.Email</td>
+
+                        </tr>
+                    }
+
+
+                </tbody>
+            </table>
+
+        </div>
+       
+            @Html.PagedListPager(Model, page => Url.Action("Index", new { page }))
+      
+           
+    </div>
+</div>
 <div>
-    @Html.ActionLink("Back to List", "Index")
+    @Html.ActionLink("Back to List", "Create")
 </div>
